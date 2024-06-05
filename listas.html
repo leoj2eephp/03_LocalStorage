@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista en LocalStorage</title>
+  </head>
+  <body>
+    <ul id="listaUL">
+      <!-- Agregar por JS todos los LI que sean necesarios para listar cada carrera -->
+    </ul>
+    <script>
+      const listaUL = document.querySelector("#listaUL");
+      const carreras = ["Informática", "Enfermería", "Turismo", "Gastronomía"];
+      // AL igual que pasa con los objetos, las listas DEBEN ser stringifeadas
+      localStorage.setItem("listaCarreras", JSON.stringify(carreras));
+      // También, al leerlas, debemos volverlas a su estado original usando JSON.parse()
+      const listaCarreras = JSON.parse(localStorage.getItem("listaCarreras"));
+      console.log(listaCarreras);
+
+      carreras.forEach((c) => {
+        const li = document.createElement("li");
+        li.innerText = c
+        listaUL.appendChild(li)
+      });
+    </script>
+  </body>
+</html>

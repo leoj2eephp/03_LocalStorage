@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos en LocalStorage</title>
+</head>
+<body>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>TIPO</th>
+                <th>EDAD</th>
+                <th>PESO</th>
+                <th>REGISTRADO?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="fila">
+                <!-- Agregar en esta fila las columnas con los datos del objeto mascota -->
+            </tr>
+        </tbody>
+    </table>
+    
+    <script>
+        const mascota = {nombre: "Misifús", tipo: "Gato", edad: 2, peso: 10.2, registrado: true}
+        // Como localStorage guarda TODO como String, no podemos guardar directamente un objeto.
+        // Vamos a necesitar transformarlo a texto para guardarlo y destransformarlo a objeto para leerlo.
+        // Esto se logra usando la clase JSON y su método stringify, que como indica su nombre, va a 
+        // stringifear (pasar a String) cualquier objeto o lista de datos que le pases
+        localStorage.setItem("mascota", JSON.stringify(mascota))
+
+        // Ahora, para leer el dato RECUERDA que está todo como STRING. Así que tenemos que destransformarlo.
+        // JSON.parse() hace esta tarea. Toma un dato stringifeado y lo vuelve a su forma natural.
+        const mascotaDestransformada = JSON.parse( localStorage.getItem("mascota") )
+        console.log(mascotaDestransformada)
+
+        const fila = document.querySelector("#fila")
+        const col1 = document.createElement("td")
+        const col2 = document.createElement("td")
+        const col3 = document.createElement("td")
+        const col4 = document.createElement("td")
+        const col5 = document.createElement("td")
+        col1.innerText = mascota.nombre
+        col2.innerText = mascota.edad
+        col3.innerText = mascota.tipo
+        col4.innerText = mascota.peso
+        col5.innerText = mascota.registrado ? "Sí" : "No"
+
+        fila.appendChild(col1)
+        fila.appendChild(col2)
+        fila.appendChild(col3)
+        fila.appendChild(col4)
+        fila.appendChild(col5)
+    </script>
+</body>
+</html>

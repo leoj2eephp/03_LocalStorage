@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage</title>
+</head>
+<body>
+
+    <label id="nombreCompleto">
+        <!-- Poner aquí (usando JS) el nombre y apellido que están en localStorage -->
+    </label>
+    
+    <script>
+        // Para guardar datos dentro de localStorage, llamaremos desde localStorage a la función setItem()
+        // setItem() espera recibir 2 parámetros:
+        // PARAM1: un String que será la KEY (tal como en JSON o en un diccionario de Python)
+        // PARAM2: un objeto.. puede ser un String, un Int, un Object, un Array (lista), etc...
+        localStorage.setItem("nombre", "Gabriel")
+        localStorage.setItem("apellido", "Achondo")
+
+        // localStorage.getItem() retorna el valor asociado a una KEY
+        // Espera por parámetro la KEY donde está guardado el valor que quieres obtener.
+        const nombre = localStorage.getItem("nombre")
+        const apellido = localStorage.getItem("apellido")
+        // alert(`${nombre} ${apellido}`)
+        const nombreCompleto = document.querySelector("#nombreCompleto")
+        nombreCompleto.innerText = nombre + " " + apellido
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Objetos en LocalStorage</title>
+  </head>
+  <body>
+    
+    <table border="1">
+      <thead>
+        <tr>
+          <td>Personaje</td>
+          <td>Animé</td>
+          <td>Calificación</td>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+      const tbody = document.querySelector("#tbody")
+        const personajes = [
+            {nombre: "Eren Jeager", anime: "Shingeki No Kiojin", calificacion: 10},
+            {nombre: "Gokú", anime: "Dragon Ball", calificacion: 7},
+            {nombre: "Naruto", anime: "Naruto Shippuden", calificacion: 6},
+            {nombre: "Luffy", anime: "One Piece", calificacion: 9},
+        ]
+        // TRABAJO: guardar esta lista de objetos en localStorage.
+        localStorage.setItem("personajes", JSON.stringify(personajes))
+        // Luego, leer el localStorage y obtener la lista guardada.
+        const listaPersonajes = localStorage.getItem("personajes")
+        // Con esta lista obtenida desde el localStorage, cargar la tabla con los datos.
+        personajes.forEach(p => {
+          // AQuí dentro del recorrido de la lista tengo que crear una fila y las columnas de esa fila
+          const tr = document.createElement("tr")
+          const td1 = document.createElement("td")
+          td1.innerText = p.nombre;
+          const td2 = document.createElement("td")
+          td2.innerText = p.anime
+          const td3 = document.createElement("td")
+          td3.innerText = p.calificacion
+
+          tr.appendChild(td1)
+          tr.appendChild(td2)
+          tr.appendChild(td3)
+          tbody.appendChild(tr)
+        });
+    </script>
+  </body>
+</html>
